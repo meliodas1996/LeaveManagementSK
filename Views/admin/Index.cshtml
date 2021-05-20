@@ -1,0 +1,164 @@
+﻿@model LeaveManagementSystemValueCreed.Models.UsersTable
+
+
+@{
+    Layout = "";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Administrator</title>
+    <style>
+        #logoff {
+            position: absolute;
+            right: 5%;
+            top: 7%;
+        }
+        .jumbotron {
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        #login-div {
+            position: absolute;
+            right: 3%;
+            top: 29.8%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+        }
+
+        #position {
+            position: absolute;
+            right: 45%;
+            top: 35%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+        }
+        #position1 {
+            position: absolute;
+            right: 45%;
+            top: 55%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+        }
+        /* Style the search box */
+        #mySearch {
+            width: 100%;
+            font-size: 18px;
+            padding: 11px;
+            border: 1px solid #ddd;
+        }
+
+        /* Style the navigation menu */
+        #myMenu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            /* Style the navigation links */
+            #myMenu li a {
+                padding: 12px;
+                text-decoration: none;
+                color: black;
+                display: block
+            }
+
+                #myMenu li a:hover {
+                    background-color: #eee;
+                }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+
+    </script>
+    <script>function myFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("mySearch");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myMenu");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }</script>
+</head>
+<body>
+    <header>
+        <div class="jumbotron" style="padding:3rem 3rem">
+
+            <div style="text-align:center">
+                <img src="~/image/logo.png" />
+            </div>
+            <div style="text-align:center; resize:both">
+
+
+            </div>
+        </div>
+    </header>
+
+    <div class="col-md-4">
+        <h2>Hello @ViewBag.Name</h2>
+
+
+    </div>
+    <div class="row" style="display:contents">
+        <h4>Create Employee</h4>
+        <p class="lead">Click Button to go to Employee Creation Page</p>
+        <p> <input type="button" name="Create" value="Create" onclick="location.href='@Url.Action("Create")'" /></p>
+    </div>
+
+    <div class="row" style="display:contents">
+        <h4>View Employee Details</h4>
+        <p class="lead">Click Button to go to Employee Creation Page</p>
+        <p> <input type="button" name="Create" value="View" onclick="location.href='@Url.Action("view")'" /></p>
+    </div>
+    <div class="row" style="display:contents">
+
+        <h4>Employee Leaves Status</h4>
+        <p> <input type="button" name="Create" value="View" onclick="location.href='@Url.Action("Leave")'" /></p>
+
+    </div>
+
+
+
+    <div id="login-div">
+        <h2>Calendar</h2>
+        <p style="margin-top:20px"><iframe src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FKolkata&amp;src=dmFsdWVjcmVlZC5jb21fNXZpaWZndm40c3RwdGdpbW9kY2xiNHRydGNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=ZW4uaW5kaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%23EF6C00&amp;color=%230B8043" style="border:solid 1px #777" width="400" height="400" frameborder="0" scrolling="no"></iframe></p>
+        <p></p>
+    </div>
+    
+    <div id="logoff">
+        <a href="@Url.Action("Logoff","Login")">LogOut</a>
+    </div>
+</body>
+</html>

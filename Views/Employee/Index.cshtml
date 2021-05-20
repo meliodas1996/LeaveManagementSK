@@ -1,0 +1,78 @@
+﻿@model LeaveManagementSystemValueCreed.Models.UsersTable
+@{
+    LeaveManagementSystemValueCreed.Models.VC_LMSEntities d = new LeaveManagementSystemValueCreed.Models.VC_LMSEntities();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+
+    }
+
+
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Employee</title>
+    <link rel="stylesheet" href="~/Content/Site.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
+<body>
+    <div id="divName">
+        <h2 style="color:darkslateblue">Hello @ViewBag.Name!</h2>
+    </div>
+    <!--<div style="margin:100px">
+        <div class="row" style="display:contents">
+            <h4>-->@*Apply For Leave*@<!--</h4>
+            <p1 class="lead"></p1>
+            <p1 id="apply"> <input type="button" name="Create" value="Apply For Leave" class="buttonCustom button1" onclick="location.href='@Url.Action("ApplyLeave")'" /></p1>
+        </div>
+
+        <div class="row" style="display:contents;margin-top:20px;margin-left:10px">
+            <h4>-->@*View Employee Leave Details*@<!--</h4>
+            <p2 class="lead"></p2>
+            <p2 id="apply2"> <input type="button" name="Create" value="Your Leaves Details" class="buttonCustom button1" onclick="location.href='@Url.Action("Leave","Employee")'" /></p2>
+        </div>
+        <div class="row" style="display:contents;margin-top:20px">
+            <h4>-->@*View Your Approvers*@<!--</h4>
+            <p3 class="lead"></p3>
+            <p3 id="apply3"> <input type="button" name="View Your Approvers" value="Your Apporvers" class="buttonCustom button1" onclick="location.href='@Url.Action("approverslist","Employee")'" /></p3>
+        </div>
+        <div class="row" style="display:contents;margin-top:20px">
+            <h4>-->@*View Your Approvers*@<!--</h4>
+            <p3 class="lead"></p3>
+            <p3 id="apply4"> <input type="button" name="View Holiday Calendar" value="Holiday Calendar" class="buttonCustom button1" onclick="location.href='@Url.Action("holiday","Employee")'" /></p3>
+        </div>-->
+
+        <div id="position">
+            <h4>Your Leave Balance</h4>
+            <p4 id="leave" style="color:crimson"> @ViewBag.leave</p4>
+
+
+        </div>
+
+    </div>
+    <div id="calendar">
+        <h2 style="margin:10px">VC Holidays and Vacations</h2>
+        <p style="margin-top:10px"><iframe src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FKolkata&amp;src=dmFsdWVjcmVlZC5jb21fNXZpaWZndm40c3RwdGdpbW9kY2xiNHRydGNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=ZW4uaW5kaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%23EF6C00&amp;color=%230B8043" style="border:solid 1px #777" width="400" height="400" frameborder="0" scrolling="no"></iframe></p>
+        <p></p>
+    </div>
+    <div id="logoff">
+        <input type="button" name="Create" value="LogOut" class="btn-danger" onclick="location.href='@Url.Action("Logoff","Login")'" />
+        @*<a href="@Url.Action("Logoff","Login")">LogOut</a>*@
+    </div>
+</body>
+</html>

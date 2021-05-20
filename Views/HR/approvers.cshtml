@@ -1,0 +1,108 @@
+﻿@model IEnumerable<LeaveManagementSystemValueCreed.Models.approver>
+
+@{
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Approvers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+    <style>
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        #back-div {
+            position: absolute;
+            top: 1%;
+            bottom: 0%;
+        }
+
+        #logoff {
+            position: absolute;
+            right: 5%;
+            top: 0%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="text-align:center;background-color:azure">
+        <h2>Approvers Details</h2>
+      
+            <a style="text-align:left" href="@Url.Action("Addapprover","HR")">Add Approver</a>
+        
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Emplyoee_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Approver_name)
+            </th>
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Emplyoee_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Approver_name)
+        </td>
+
+
+        <td>
+
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })|
+            @Html.ActionLink("Edit", "EditApprover", new { id = item.ID })
+        </td>
+    </tr>
+        }
+
+    </table>
+    <div id="back-div">
+        <a href="@Url.Action("Index","HR")">Back To Home</a>
+    </div>
+    <div id="logoff">
+        <a href="@Url.Action("Logoff","Login")">LogOut</a>
+    </div>
+</body>
+</html>

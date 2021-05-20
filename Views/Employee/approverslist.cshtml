@@ -1,0 +1,40 @@
+﻿@model IEnumerable<LeaveManagementSystemValueCreed.Models.approver>
+
+@{
+    ViewBag.Title = "approverslist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>You Approvers</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Approver_name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Approver_name)
+            </td>
+
+        </tr>
+    }
+
+</table>
+<div id="back-div">
+    <a href="@Url.Action("Index","Employee")">Back To Home</a>
+</div>

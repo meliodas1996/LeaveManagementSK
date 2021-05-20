@@ -1,0 +1,220 @@
+﻿body {
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.buttonCustom {
+    background-color: #253d5a; /* Green */
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button1 {
+    border-radius: 12px;
+}
+
+#login-div {
+    position: absolute;
+    right: 0%;
+    top:-200%;
+    border: 1px solid #ccc;
+    padding: 5px 5px;
+}
+#calendar{
+    position:absolute;
+    right:0%;
+    
+}
+#login-div {
+    position: absolute;
+    right: 3%;
+    top: 21%;
+    /*border: 1px solid #ccc;*/
+    padding: 10px 10px;
+}
+
+#ABC {
+    position: absolute;
+    right: 40%;
+    top: 43%;
+    border: -1px solid #ccc;
+    padding: 10px 10px;
+    padding: 50px;
+    margin: 80px;
+    font-size: 1rem; /*added*/
+}
+
+.field-validation-error {
+    color: red;
+}
+
+.jumbotron {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+body {
+    background-size: cover;
+    background-position: center;
+}
+
+#logoff {
+    position: absolute;
+    right: 5%;
+    top: 7%;
+    border: 1px solid #ccc;
+    padding: 5px 5px;
+    background-color: azure
+}
+
+#divName {
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    font-size:50rem;
+   
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+
+
+#leave {
+    position: absolute;
+    right: 20%;
+    top: -160%;
+    border: -1px solid #808080;
+    padding: 5px 50px;
+    margin-top: 130px;
+}
+
+.jumbotron {
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+    background-image:
+}
+
+#position {
+    position: absolute;
+    right: 41%;
+    top: 40%;
+    padding: 5px 5px;
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+#apply {
+    position: absolute;
+    left: 1%;
+    top: 35%;
+    cursor: pointer;
+}
+
+#apply2 {
+    position: absolute;
+    left: 1%;
+    top: 42%;
+    height: auto;
+}
+
+#apply3 {
+    position: absolute;
+    left: 1%;
+    top: 49%
+}
+
+#apply4 {
+    position: absolute;
+    left: 1%;
+    top: 56%
+}
+
+body {
+    background-image: url('../../image/images (1).jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+h2 {
+    margin-top: 110%;
+}
+#back {
+    position: absolute;
+    right: 8%;
+    top: 13%;
+}
+
+back-div {
+    position: absolute;
+    left: 25%;
+    top: 13%;
+}
+
+hrCustom {
+width : 100%
+}
+.navbar-inverseCustom {
+    background-color: #253d5a;
+    border-color: #080808;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #253d5a;
+    font-size: 13px;
+}
+
+li {
+    float: left;
+}
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+        li a:hover {
+            background-color: #111111;
+        }
+
+.active {
+    background-color: #000;
+}
+/* to override the existing css for "a" tag */
+#sub-header .active a {
+    color: #fff;
+}

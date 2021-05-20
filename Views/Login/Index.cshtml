@@ -1,0 +1,96 @@
+﻿@model LeaveManagementSystemValueCreed.Models.UsersTable
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+ 
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @*<link rel="stylesheet" href="~/Content/Site.css" type="text/css" />*@
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+   
+</head>
+<body>
+    @*<header>
+        <div class="jumbotron" style="border-radius: 27.3rem; margin-bottom: 1rem;">
+
+
+            <div style="text-align:center ">
+                <img src="~/image/logo.PNG" />
+             
+            </div>
+
+        </div>
+    </header>*@
+    @*comment*@
+    <div id="login-div" ">
+
+        @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:solid">Log-in Window </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(a => a.EMAIL, "Email")
+                    </td>
+                    <td>
+                        @Html.EditorFor(a => a.EMAIL)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(a => a.EMAIL)</td>
+                </tr>
+                <tr>
+                    <td  class="button button1">
+                        <input type="submit" name="name" value="Login" />
+
+                    </td>
+                </tr>
+
+
+
+            </table>
+
+        }
+
+    </div>
+    @*comment*@
+    <div id="ABC">
+        @using (Html.BeginForm("RedirectToGoogle", "Login", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                   
+                </tr>
+
+                <input type="submit" id="btnGoogleLogin" value="Google Log-in" class="buttonCustom button1"  />
+            </table>}
+        @ViewBag.Message
+    </div>
+
+</body>
+</html>
+

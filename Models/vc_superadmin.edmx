@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VC_LMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="approval">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee_id" Type="varchar" MaxLength="50" />
+          <Property Name="Aprrover_id" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Leave_id" Type="int" />
+        </EntityType>
+        <EntityType Name="approvers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emplyoee_id" Type="varchar" MaxLength="50" />
+          <Property Name="approver_id" Type="varchar" MaxLength="50" />
+          <Property Name="sequence" Type="nvarchar" MaxLength="50" />
+          <Property Name="department" Type="nvarchar" MaxLength="50" />
+          <Property Name="Employee_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Approver_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="department_tbl">
+          <Key>
+            <PropertyRef Name="DEPARTMENT" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CREATIONDATE" Type="datetime" />
+          <Property Name="REBISIONDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Leave">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee_Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Number_of_Days" Type="int" Nullable="false" />
+          <Property Name="Start_Date" Type="date" Nullable="false" />
+          <Property Name="End_Date" Type="date" Nullable="false" />
+          <Property Name="Employe_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="LeaveType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Leave_apply_date" Type="date" />
+          <Property Name="Leave_credit" Type="int" />
+          <Property Name="Leave_debit" Type="int" />
+          <Property Name="Leave_balance" Type="int" />
+        </EntityType>
+        <EntityType Name="RolesTable">
+          <Key>
+            <PropertyRef Name="NAME" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="text" Nullable="false" />
+          <Property Name="STATUS" Type="bit" Nullable="false" />
+          <Property Name="CREATIONDATE" Type="datetime" Nullable="false" />
+          <Property Name="REVISIONDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UsersTable">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+          </Key>
+          <Property Name="FIRST_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LAST_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMPLOYEE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PHONE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="50" />
+          <Property Name="ALTERNATE_PHONE" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMERGENCY_NUMBER" Type="nvarchar" MaxLength="50" />
+          <Property Name="LOCATION" Type="nvarchar" MaxLength="50" />
+          <Property Name="PROFILE_PICTURE" Type="varbinary(max)" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="GENDER" Type="nvarchar" MaxLength="50" />
+          <Property Name="Emp_start_date" Type="date" Nullable="false" />
+          <Property Name="Emp_end_date" Type="date" />
+          <Property Name="manager_id" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ROLES" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="manager_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="leaves_alloted" Type="int" />
+          <Property Name="BLOOD_GROUP" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_approval_UsersTable">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="0..1" />
+          <End Role="approval" Type="Self.approval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="approval">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_approval_UsersTable1">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="0..1" />
+          <End Role="approval" Type="Self.approval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="approval">
+              <PropertyRef Name="Aprrover_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_approvers_UsersTable">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="0..1" />
+          <End Role="approvers" Type="Self.approvers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="approvers">
+              <PropertyRef Name="Emplyoee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_approvers_UsersTable1">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="0..1" />
+          <End Role="approvers" Type="Self.approvers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="approvers">
+              <PropertyRef Name="approver_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leave_UsersTable">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="Employee_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersTable_department_tbl">
+          <End Role="department_tbl" Type="Self.department_tbl" Multiplicity="1" />
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_tbl">
+              <PropertyRef Name="DEPARTMENT" />
+            </Principal>
+            <Dependent Role="UsersTable">
+              <PropertyRef Name="DEPARTMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersTable_RolesTable">
+          <End Role="RolesTable" Type="Self.RolesTable" Multiplicity="1" />
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolesTable">
+              <PropertyRef Name="NAME" />
+            </Principal>
+            <Dependent Role="UsersTable">
+              <PropertyRef Name="ROLES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VC_LMSModelStoreContainer">
+          <EntitySet Name="approval" EntityType="Self.approval" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="approvers" EntityType="Self.approvers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="department_tbl" EntityType="Self.department_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leave" EntityType="Self.Leave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolesTable" EntityType="Self.RolesTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersTable" EntityType="Self.UsersTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_approval_UsersTable" Association="Self.FK_approval_UsersTable">
+            <End Role="UsersTable" EntitySet="UsersTable" />
+            <End Role="approval" EntitySet="approval" />
+          </AssociationSet>
+          <AssociationSet Name="FK_approval_UsersTable1" Association="Self.FK_approval_UsersTable1">
+            <End Role="UsersTable" EntitySet="UsersTable" />
+            <End Role="approval" EntitySet="approval" />
+          </AssociationSet>
+          <AssociationSet Name="FK_approvers_UsersTable" Association="Self.FK_approvers_UsersTable">
+            <End Role="UsersTable" EntitySet="UsersTable" />
+            <End Role="approvers" EntitySet="approvers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_approvers_UsersTable1" Association="Self.FK_approvers_UsersTable1">
+            <End Role="UsersTable" EntitySet="UsersTable" />
+            <End Role="approvers" EntitySet="approvers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leave_UsersTable" Association="Self.FK_Leave_UsersTable">
+            <End Role="UsersTable" EntitySet="UsersTable" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersTable_department_tbl" Association="Self.FK_UsersTable_department_tbl">
+            <End Role="department_tbl" EntitySet="department_tbl" />
+            <End Role="UsersTable" EntitySet="UsersTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersTable_RolesTable" Association="Self.FK_UsersTable_RolesTable">
+            <End Role="RolesTable" EntitySet="RolesTable" />
+            <End Role="UsersTable" EntitySet="UsersTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VC_LMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="approval">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Aprrover_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsersTable" Relationship="Self.FK_approval_UsersTable" FromRole="approval" ToRole="UsersTable" />
+          <NavigationProperty Name="UsersTable1" Relationship="Self.FK_approval_UsersTable1" FromRole="approval" ToRole="UsersTable" />
+          <Property Name="Leave_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="approver">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emplyoee_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="approver_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sequence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsersTable" Relationship="Self.FK_approvers_UsersTable" FromRole="approvers" ToRole="UsersTable" />
+          <NavigationProperty Name="UsersTable1" Relationship="Self.FK_approvers_UsersTable1" FromRole="approvers" ToRole="UsersTable" />
+          <Property Name="Employee_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Approver_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="department_tbl">
+          <Key>
+            <PropertyRef Name="DEPARTMENT" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEPARTMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CREATIONDATE" Type="DateTime" Precision="3" />
+          <Property Name="REBISIONDATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UsersTables" Relationship="Self.FK_UsersTable_department_tbl" FromRole="department_tbl" ToRole="UsersTable" />
+        </EntityType>
+        <EntityType Name="Leave">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number_of_Days" Type="Int32" Nullable="false" />
+          <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Employe_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LeaveType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Leave_apply_date" Type="DateTime" Precision="0" />
+          <Property Name="Leave_credit" Type="Int32" />
+          <Property Name="Leave_debit" Type="Int32" />
+          <Property Name="Leave_balance" Type="Int32" />
+          <NavigationProperty Name="UsersTable" Relationship="Self.FK_Leave_UsersTable" FromRole="Leave" ToRole="UsersTable" />
+        </EntityType>
+        <EntityType Name="RolesTable">
+          <Key>
+            <PropertyRef Name="NAME" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="CREATIONDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="REVISIONDATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UsersTables" Relationship="Self.FK_UsersTable_RolesTable" FromRole="RolesTable" ToRole="UsersTable" />
+        </EntityType>
+        <EntityType Name="UsersTable">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+          </Key>
+          <Property Name="FIRST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LAST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ALTERNATE_PHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMERGENCY_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LOCATION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PROFILE_PICTURE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="BLOOD_GROUP" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GENDER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Emp_start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Emp_end_date" Type="DateTime" Precision="0" />
+          <Property Name="manager_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ROLES" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DEPARTMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="manager_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="leaves_alloted" Type="Int32" />
+          <NavigationProperty Name="approvals" Relationship="Self.FK_approval_UsersTable" FromRole="UsersTable" ToRole="approval" />
+          <NavigationProperty Name="approvals1" Relationship="Self.FK_approval_UsersTable1" FromRole="UsersTable" ToRole="approval" />
+          <NavigationProperty Name="approvers" Relationship="Self.FK_approvers_UsersTable" FromRole="UsersTable" ToRole="approvers" />
+          <NavigationProperty Name="approvers1" Relationship="Self.FK_approvers_UsersTable1" FromRole="UsersTable" ToRole="approvers" />
+          <NavigationProperty Name="department_tbl" Relationship="Self.FK_UsersTable_department_tbl" FromRole="UsersTable" ToRole="department_tbl" />
+          <NavigationProperty Name="Leaves" Relationship="Self.FK_Leave_UsersTable" FromRole="UsersTable" ToRole="Leave" />
+          <NavigationProperty Name="RolesTable" Relationship="Self.FK_UsersTable_RolesTable" FromRole="UsersTable" ToRole="RolesTable" />
+        </EntityType>
+        <Association Name="FK_approval_UsersTable">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="0..1" />
+          <End Role="approval" Type="Self.approval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="approval">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_approval_UsersTable1">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="0..1" />
+          <End Role="approval" Type="Self.approval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="approval">
+              <PropertyRef Name="Aprrover_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_approvers_UsersTable">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="0..1" />
+          <End Role="approvers" Type="Self.approver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="approvers">
+              <PropertyRef Name="Emplyoee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_approvers_UsersTable1">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="0..1" />
+          <End Role="approvers" Type="Self.approver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="approvers">
+              <PropertyRef Name="approver_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersTable_department_tbl">
+          <End Role="department_tbl" Type="Self.department_tbl" Multiplicity="1" />
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department_tbl">
+              <PropertyRef Name="DEPARTMENT" />
+            </Principal>
+            <Dependent Role="UsersTable">
+              <PropertyRef Name="DEPARTMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leave_UsersTable">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="Employee_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersTable_RolesTable">
+          <End Role="RolesTable" Type="Self.RolesTable" Multiplicity="1" />
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolesTable">
+              <PropertyRef Name="NAME" />
+            </Principal>
+            <Dependent Role="UsersTable">
+              <PropertyRef Name="ROLES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VC_LMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="approvals" EntityType="Self.approval" />
+          <EntitySet Name="approvers" EntityType="Self.approver" />
+          <EntitySet Name="department_tbl" EntityType="Self.department_tbl" />
+          <EntitySet Name="Leaves" EntityType="Self.Leave" />
+          <EntitySet Name="RolesTables" EntityType="Self.RolesTable" />
+          <EntitySet Name="UsersTables" EntityType="Self.UsersTable" />
+          <AssociationSet Name="FK_approval_UsersTable" Association="Self.FK_approval_UsersTable">
+            <End Role="UsersTable" EntitySet="UsersTables" />
+            <End Role="approval" EntitySet="approvals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_approval_UsersTable1" Association="Self.FK_approval_UsersTable1">
+            <End Role="UsersTable" EntitySet="UsersTables" />
+            <End Role="approval" EntitySet="approvals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_approvers_UsersTable" Association="Self.FK_approvers_UsersTable">
+            <End Role="UsersTable" EntitySet="UsersTables" />
+            <End Role="approvers" EntitySet="approvers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_approvers_UsersTable1" Association="Self.FK_approvers_UsersTable1">
+            <End Role="UsersTable" EntitySet="UsersTables" />
+            <End Role="approvers" EntitySet="approvers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersTable_department_tbl" Association="Self.FK_UsersTable_department_tbl">
+            <End Role="department_tbl" EntitySet="department_tbl" />
+            <End Role="UsersTable" EntitySet="UsersTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leave_UsersTable" Association="Self.FK_Leave_UsersTable">
+            <End Role="UsersTable" EntitySet="UsersTables" />
+            <End Role="Leave" EntitySet="Leaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersTable_RolesTable" Association="Self.FK_UsersTable_RolesTable">
+            <End Role="RolesTable" EntitySet="RolesTables" />
+            <End Role="UsersTable" EntitySet="UsersTables" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VC_LMSModelStoreContainer" CdmEntityContainer="VC_LMSEntities">
+          <EntitySetMapping Name="approvals">
+            <EntityTypeMapping TypeName="VC_LMSModel.approval">
+              <MappingFragment StoreEntitySet="approval">
+                <ScalarProperty Name="Leave_id" ColumnName="Leave_id" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="Aprrover_id" ColumnName="Aprrover_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="approvers">
+            <EntityTypeMapping TypeName="VC_LMSModel.approver">
+              <MappingFragment StoreEntitySet="approvers">
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="Approver_name" ColumnName="Approver_name" />
+                <ScalarProperty Name="Employee_name" ColumnName="Employee_name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Emplyoee_id" ColumnName="Emplyoee_id" />
+                <ScalarProperty Name="approver_id" ColumnName="approver_id" />
+                <ScalarProperty Name="sequence" ColumnName="sequence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="department_tbl">
+            <EntityTypeMapping TypeName="VC_LMSModel.department_tbl">
+              <MappingFragment StoreEntitySet="department_tbl">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+                <ScalarProperty Name="CREATIONDATE" ColumnName="CREATIONDATE" />
+                <ScalarProperty Name="REBISIONDATE" ColumnName="REBISIONDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leaves">
+            <EntityTypeMapping TypeName="VC_LMSModel.Leave">
+              <MappingFragment StoreEntitySet="Leave">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Number_of_Days" ColumnName="Number_of_Days" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="Employe_name" ColumnName="Employe_name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LeaveType" ColumnName="LeaveType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Leave_apply_date" ColumnName="Leave_apply_date" />
+                <ScalarProperty Name="Leave_credit" ColumnName="Leave_credit" />
+                <ScalarProperty Name="Leave_debit" ColumnName="Leave_debit" />
+                <ScalarProperty Name="Leave_balance" ColumnName="Leave_balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolesTables">
+            <EntityTypeMapping TypeName="VC_LMSModel.RolesTable">
+              <MappingFragment StoreEntitySet="RolesTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="CREATIONDATE" ColumnName="CREATIONDATE" />
+                <ScalarProperty Name="REVISIONDATE" ColumnName="REVISIONDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersTables">
+            <EntityTypeMapping TypeName="VC_LMSModel.UsersTable">
+              <MappingFragment StoreEntitySet="UsersTable">
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="ALTERNATE_PHONE" ColumnName="ALTERNATE_PHONE" />
+                <ScalarProperty Name="EMERGENCY_NUMBER" ColumnName="EMERGENCY_NUMBER" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="PROFILE_PICTURE" ColumnName="PROFILE_PICTURE" />
+                <ScalarProperty Name="BLOOD_GROUP" ColumnName="BLOOD_GROUP" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="Emp_start_date" ColumnName="Emp_start_date" />
+                <ScalarProperty Name="Emp_end_date" ColumnName="Emp_end_date" />
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ROLES" ColumnName="ROLES" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+                <ScalarProperty Name="manager_name" ColumnName="manager_name" />
+                <ScalarProperty Name="leaves_alloted" ColumnName="leaves_alloted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

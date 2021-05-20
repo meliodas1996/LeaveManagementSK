@@ -1,0 +1,209 @@
+﻿
+@model LeaveManagementSystemValueCreed.Models.Leave
+@{
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <style>
+        #logoff {
+            position: absolute;
+            right: 5%;
+            top: 7%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+            background-color: azure
+        }
+
+        #back {
+            position: absolute;
+            right: 3%;
+            top: 13%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+            background-color: azure
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        #login-div {
+            position: absolute;
+            right: 38%;
+            top: 37%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+        }
+        .jumbotron {
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $('.datepicker').datepicker({
+
+                    changeMonth: true,
+                    changeYear: true,
+                    minDate: "-99Y",
+                    dateFormat: "dd/mm/yy"
+
+                })
+            });
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <div class="jumbotron" style="padding:3rem 3rem">
+
+            <div style="text-align:center">
+
+                <img src="~/image/logo.png" />
+            </div>
+            <div style="text-align:center; resize:both">
+
+
+            </div>
+        </div>
+    </header>
+
+    <div id="login-div">
+        @using (Html.BeginForm())
+        {
+
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:solid; text-align:center"> Leave Application  Form </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(a => a.LeaveType, "Type of Leave")
+                    </td>
+
+                    <td>
+                        @Html.DropDownList("LeaveType", new List<SelectListItem>
+                            {
+                            new SelectListItem{Text="Sick",Value="Sick"},
+                            new SelectListItem{Text="Vacation",Value="Vacation"},
+                            new SelectListItem{Text="CompOff",Value="CompOff"},
+                            new SelectListItem{Text="Personal",Value="Personal"}}, "Select Leave Type", new { required = default(string) })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(a => a.Start_Date, "Start Date")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(a => a.Start_Date, new { @class = "datepicker" })
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(a => a.Start_Date, "", new { @class = "text-danger" })</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(a => a.End_Date, "End Date")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(a => a.End_Date, new { @class = "datepicker" })
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(a => a.End_Date, "", new { @class = "text-danger" })</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(a => a.Reason, "Reason")
+                    </td>
+                    <td>
+                        @Html.EditorFor(a => a.Reason)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(a => a.Reason, "", new { @class = "text-danger" })</td>
+                </tr>
+
+
+
+
+
+
+                <tr>
+                    <td>
+                        <input type="submit" name="name" value="Submit" />
+
+                    </td>
+                </tr>
+
+
+            </table>
+            <hr />
+            if (ViewBag.Status == true)
+            {
+                <div class="text-success">
+                    @ViewBag.Message
+                </div>}
+            else
+            {
+                <div class="text-danger">
+                    @ViewBag.Message
+                </div>}
+
+
+        }
+    </div>
+    <div id="back">
+        <a href="@Url.Action("Index","manager")">Back To Home</a>
+    </div>
+    <div id="logoff">
+        <a href="@Url.Action("Logoff","Login")">LogOut</a>
+    </div>
+
+
+</body>
+</html>
+

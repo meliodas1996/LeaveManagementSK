@@ -1,0 +1,78 @@
+﻿@model IEnumerable<LeaveManagementSystemValueCreed.Models.Leave>
+
+@{
+    ViewBag.Title = "onLeave";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Approved Leaves of Employees</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employe_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Leave_apply_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Number_of_Days)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Start_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.End_Date)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Employe_name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LeaveType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Reason)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Leave_apply_date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Number_of_Days)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Start_Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.End_Date)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+
+
+</tr>
+}
+
+</table>
+<div id="back-div">
+    <a href="@Url.Action("Index","HR")">Back To Home</a>
+</div>

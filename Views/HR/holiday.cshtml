@@ -1,0 +1,115 @@
+﻿@model IEnumerable<LeaveManagementSystemValueCreed.Models.holiday>
+
+@{
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Holidays</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $('.datepicker').datepicker({
+
+                    changeMonth: true,
+                    changeYear: true,
+                    minDate: "-99Y",
+                    dateFormat: "dd/mm/yy"
+
+                })
+            });
+    </script>
+    <style>
+        #logoff {
+            position: absolute;
+            right: 5%;
+            top: 5%;
+        }
+
+        #back {
+            position: absolute;
+            right: 3%;
+            top: 10%;
+        }
+        .jumbotron {
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="jumbotron" style="padding:3rem 3rem">
+
+            <div style="text-align:center">
+
+                <img src="~/image/logo.png" /><h4 style="text-align:center;margin-top:2%">Holiday Calendar for ValueCreed</h4>
+            </div>
+            <div style="text-align:center; resize:both">
+
+
+            </div>
+        </div>
+    </header>
+    <a style="text-align:center" href="@Url.Action("addholiday","HR")">Add Holiday</a>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Holiday_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Holiday_date)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Holiday_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Holiday_date)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
+
+                    @Html.ActionLink("Delete", "deleteholiday", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div id="back">
+        <a href="@Url.Action("Index","HR")">Back To Home</a>
+    </div>
+    <div id="logoff">
+        <a href="@Url.Action("Logoff","Login")">LogOut</a>
+    </div>
+
+</body>
+</html>

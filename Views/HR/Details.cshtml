@@ -1,0 +1,137 @@
+﻿@model LeaveManagementSystemValueCreed.Models.UsersTable
+
+@{
+    ViewBag.Title = "Details";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FIRST_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FIRST_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LAST_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LAST_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHONE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHONE)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EMERGENCY_NUMBER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMERGENCY_NUMBER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOCATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOCATION)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BLOOD_GROUP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BLOOD_GROUP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPTION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GENDER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GENDER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Emp_start_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emp_start_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Emp_end_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emp_end_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEPARTMENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPARTMENT)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ROLES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROLES)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "view")
+</p>

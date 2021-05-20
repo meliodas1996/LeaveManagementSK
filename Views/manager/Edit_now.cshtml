@@ -1,0 +1,144 @@
+﻿@model LeaveManagementSystemValueCreed.Models.Leave
+
+@{
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        #logoff {
+            position: absolute;
+            right: 5%;
+            top: 1%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+            background-color: azure
+        }
+        #back {
+            position: absolute;
+            left: 3%;
+            top: 1%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+            background-color: azure
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $('.datepicker').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    minDate: "-99Y",
+                    dateFormat: "dd/mm/yy"
+                })
+            });
+    </script>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal" style="text-align:center">
+            <h4 style="text-align:center">Leave Edit or Cancel Page</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+            @Html.HiddenFor(model => model.Employe_name)
+            @Html.HiddenFor(model => model.Number_of_Days)
+            @Html.HiddenFor(model => model.Employee_Id)
+            @Html.HiddenFor(model => model.Leave_apply_date)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Start_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.TextBoxFor(a => a.Start_Date, new { @class = "datepicker" })
+                    <br/>
+                    @Html.ValidationMessageFor(model => model.Start_Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.End_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.TextBoxFor(a => a.End_Date, new { @class = "datepicker" })
+                    <br/>
+                    @Html.ValidationMessageFor(model => model.End_Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.DropDownList("Status", new List<SelectListItem>
+               {
+                   new SelectListItem{Text="Cancel",Value="Cancel"},
+                    new SelectListItem{Text="Applied",Value="Pending on Manager" }
+
+               }, "Select Option", new { required = default(string) })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LeaveType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.DropDownList("LeaveType", new List<SelectListItem>
+                    {
+                       new SelectListItem{Text="Sick",Value="Sick"},
+                       new SelectListItem{Text="Optional",Value="Optional"},
+                       new SelectListItem{Text="CompOff",Value="CompOff"},
+                       new SelectListItem{Text="Paid",Value="Paid"}}, "Select Leave Type", new { required = default(string) })
+                    @Html.ValidationMessageFor(model => model.LeaveType, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Reason, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.TextBoxFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-12">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div id="back">
+        @Html.ActionLink("Back to List", "myleave")
+    </div>
+    <div id="logoff">
+        <a href="@Url.Action("Logoff","Login")">LogOut</a>
+    </div>
+</body>
+</html>

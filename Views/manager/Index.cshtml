@@ -1,0 +1,153 @@
+﻿
+@model LeaveManagementSystemValueCreed.Models.Leave
+
+@{
+    LeaveManagementSystemValueCreed.Models.VC_LMSEntities d = new LeaveManagementSystemValueCreed.Models.VC_LMSEntities();
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+    var b = "";
+
+    try
+    {
+
+
+        foreach (var item in d.UsersTables)
+        {
+            if (item.EMAIL.ToString() == Session["Name"].ToString())
+            {
+                b = item.leaves_alloted.ToString();
+                break;
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Manager </title>
+    <style>
+        #logoff {
+            position: absolute;
+            right: 5%;
+            top: 7%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+            background-color: azure
+        }
+        .jumbotron {
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        #login-div {
+            position: absolute;
+            right: 5%;
+            top: 34%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+        }
+
+        #position {
+            position: absolute;
+            right: 45%;
+            top: 35%;
+            
+            padding: 5px 5px;
+        }
+
+        #position2 {
+            position: absolute;
+            right: 45%;
+            top: 57%;
+           
+            padding: 5px 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
+<body>
+    <header>
+        <div class="jumbotron" style="padding:3rem 3rem">
+
+            <div style="text-align:center">
+
+                <img src="~/image/logo.png"/>
+            </div>
+
+        </div>
+    </header>
+
+    <div>
+        <div class="col-md-4">
+            <h2>Hello @Session["userName"].ToString()</h2>
+
+
+        </div>
+        <div class="row" style="display:contents">
+
+            <h4>Employee Leaves Status</h4>
+            <p class="lead">Click Button to go to You Team's Applied Leave  Page</p>
+            <p style="padding-left:20px"> <input type="button" name="Create" value="View" onclick="location.href='  @Url.Action("Leave")'" /></p>
+
+        </div>
+        <div class="row" style="display:contents">
+
+            <h4>Apply For Leave</h4>
+            <p class="lead">Click Button to go to Leave Apply Page</p>
+            <p style="padding-left:20px"> <input type="button" name="Apply for Leave" value="Apply For Leave" onclick="location.href='  @Url.Action("LeaveApply")'" /></p>
+
+        </div>
+        <div id="login-div">
+            <h2>VC Holiday and Leaves</h2>
+            <p style="margin-top:15px; margin-bottom:0px"><iframe src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FKolkata&amp;src=dmFsdWVjcmVlZC5jb21fNXZpaWZndm40c3RwdGdpbW9kY2xiNHRydGNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=ZW4uaW5kaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%23EF6C00&amp;color=%230B8043" style="border:solid 1px #777" width="400" height="400" frameborder="0" scrolling="no"></iframe></p>
+            <p></p>
+        </div>
+    </div>
+    <div id="position">
+        <div>
+            <h4> Your Leave Status </h4>
+            <p style="text-align:center"> <input type="button" name="View" value="View" onclick="location.href='@Url.Action("myleave")'" /></p>
+        </div>
+    </div>
+    <div id="position2">
+        <div>
+            <h4> Your Leave Balance </h4>
+            <p style="text-align:center">@b </p>
+        </div>
+
+
+    </div>
+    <div id="logoff">
+        <a href="@Url.Action("Logoff","Login")">LogOut</a>
+    </div>
+</body>
+</html>

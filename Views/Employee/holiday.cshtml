@@ -1,0 +1,37 @@
+﻿@model IEnumerable<LeaveManagementSystemValueCreed.Models.holiday>
+
+@{
+    ViewBag.Title = "holiday";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Holiday Calendar</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Holiday_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Holiday_date)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Holiday_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Holiday_date)
+            </td>
+
+        </tr>
+    }
+
+</table>
+<div id="back">
+    <a href="@Url.Action("Index","Employee")">Back To Home</a>
+</div>

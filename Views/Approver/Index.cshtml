@@ -1,0 +1,179 @@
+﻿
+@model LeaveManagementSystemValueCreed.Models.UsersTable
+
+@{
+    LeaveManagementSystemValueCreed.Models.VC_LMSEntities d = new LeaveManagementSystemValueCreed.Models.VC_LMSEntities();
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Approver </title>
+    <style>
+        #logoff {
+            position: absolute;
+            right: 5%;
+            top: 7%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+            background-color: azure
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #apply {
+            position: absolute;
+            left: 1%;
+            top: 50%;
+            cursor: pointer;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        #login-div {
+            position: absolute;
+            right: 5%;
+            top: 26%;
+            padding: 10px 10px;
+        }
+
+        #apply2 {
+            position: absolute;
+            left: 11%;
+            top: 95%;
+            height: auto;
+        }
+        #apply4 {
+            position: absolute;
+            left: 1%;
+            top: 40%;
+            height: auto;
+        }
+        #position {
+            position: absolute;
+            right: 47%;
+            top: 35%;
+            padding: 5px 5px;
+        }
+
+        #position2 {
+            position: absolute;
+            right: 49%;
+            top: 56%;
+            padding: 5px 5px;
+        }
+
+        #position3 {
+            position: absolute;
+            right:335%;
+            top: 25%;
+            padding: 5px 5px;
+        }
+
+        #position4 {
+            position: absolute;
+            right: 327%;
+            top: 100%;
+            padding: 5px 5px;
+        }
+        .jumbotron {
+            padding-top: 3px !important;
+            padding-bottom: 3px !important;
+        }
+        body {
+            background-image: url('../../image/images (1).jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
+<body>
+    <header>
+        <div class="jumbotron" style="padding:3rem 3rem">
+
+            <div style="text-align:center">
+
+                <img src="~/image/logo.png" />
+            </div>
+
+        </div>
+    </header>
+
+    <div>
+        <div class="col-md-4">
+            <h2 style="color:darkslateblue">Hello @ViewBag.Name</h2>
+
+
+        </div>
+        <div class="row" style="display:contents">
+       
+            <p id="apply4"> <input type="button" name="Create" value="Team's Applied Leaves" class="btn-info" onclick="location.href='@Url.Action("viewleave")'" /></p>
+
+        </div>
+        <div class="row" style="display:contents">
+            <h4>@*Apply For Leave*@</h4>
+            <p1 class="lead"></p1>
+            <p1 id="apply"> <input type="button" name="Create" value="Apply For Leave" class="btn-info" onclick="location.href='@Url.Action("LeaveApply")'" /></p1>
+        </div>
+        <div id="login-div">
+            <h2 style="text-align:center">VC Holiday and Leaves</h2>
+            <p style="margin-top:15px; margin-bottom:0px"><iframe src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FKolkata&amp;src=dmFsdWVjcmVlZC5jb21fNXZpaWZndm40c3RwdGdpbW9kY2xiNHRydGNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=ZW4uaW5kaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%23EF6C00&amp;color=%230B8043" style="border:solid 1px #777" width="400" height="400" frameborder="0" scrolling="no"></iframe></p>
+            <p></p>
+        </div>
+    </div>
+    <div id="position">
+
+        <div>
+            <h4> Your Leave Status </h4>
+            <p2 id="apply2"> <input type="button" name="Create" value="Your Leaves Details" class="btn-info" onclick="location.href='@Url.Action("myleave")'" /></p2>
+        </div>
+    </div>
+    <div id="position2">
+        <div>
+            <h4>  Leave Balance </h4>
+            <p style="text-align:center">@ViewBag.leave </p>
+        </div>
+        <div id="position3">
+            <div>
+
+                <p> <input type="button" name="View Approvers" value="Your Apporvers" class="btn-info" onclick="location.href='@Url.Action("approverslist")'" /></p>
+            </div>
+        </div>
+        <div id="position4">
+            <div>
+
+                <p> <input type="button" name="View Holiday Calendar" value="Holiday Calendar" class="btn-info" onclick="location.href='@Url.Action("approverslist")'" /></p>
+            </div>
+        </div>
+
+
+    </div>
+    <div id="logoff">
+        <input type="button" name="Create" value="LogOut" class="btn-danger" onclick="location.href='@Url.Action("Logoff","Login")'" />
+    </div>
+</body>
+</html>

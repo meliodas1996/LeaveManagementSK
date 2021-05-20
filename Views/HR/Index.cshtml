@@ -1,0 +1,244 @@
+﻿
+@model LeaveManagementSystemValueCreed.Models.UsersTable
+
+@{
+    LeaveManagementSystemValueCreed.Models.VC_LMSEntities d = new LeaveManagementSystemValueCreed.Models.VC_LMSEntities();
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+ 
+
+
+    int c = 0;
+    //foreach (var i in d.UsersTables)
+    //{
+    //    foreach (var leave in d.Leaves)
+    //    {
+    //        if (i.EMPLOYEE_ID == leave.Employee_Id && leave.Status == "Approved By Manager")
+    //        {
+    //            c++;
+    //        }
+    //    }
+    //}
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Human Resource</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+        #logoff {
+            position: absolute;
+            right: 5%;
+            top: 7%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+            background-color: azure
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        #login-div {
+            position: absolute;
+            right: 5%;
+            top: 36%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+        }
+
+        #position {
+            position: absolute;
+            right: 45%;
+            top: 43%;
+        }
+
+        #leave {
+            position: absolute;
+            right: 20%;
+            top: 80%;
+            border: 1px solid #808080;
+            padding: 5px 50px;
+        }
+
+        #position2 {
+            position: absolute;
+            right: 45%;
+            top: 60%;
+        }
+
+        #name {
+            position: absolute;
+            right: 45%;
+            top: 30%;
+        }
+
+        #position3 {
+            position: absolute;
+            right: 45%;
+            top:80%;
+        }
+
+        .jumbotron {
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+        }
+
+    </style>
+</head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+
+    <body>
+        <header>
+            
+            <div class="jumbotron" style="padding:3rem 3rem">
+                <span style="font-size:25px;cursor:pointer;top:50px" onclick="openNav()">&#9776; Navigation</span>
+                <div style="text-align:center">
+
+                    <img src="~/image/logo.png" />
+                </div>
+
+
+            </div>
+
+        </header>
+ 
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="@Url.Action("Approvers")">Approvers</a>
+            <a href=" @Url.Action("Leave")">Applied Leaves</a>
+            <a href=" @Url.Action("Create")">Create Employee</a>
+            <a href=" @Url.Action("view")"> Employee Details</a>
+            <a href=" @Url.Action("holiday")"> Holiday Calendar</a>
+            <a href="@Url.Action("YourApprovers")"> Your Approvers</a>
+            <a href="@Url.Action("onLeave")"> Employees On Leave</a>
+        </div>
+
+        <div>
+            <div id="name">
+                <h2>Hello @ViewBag.Name</h2>
+
+
+            </div>
+            @*<div class="row" style="display:contents">
+                <h4>Create Employee</h4>
+                <p class="lead">Click Button to go to Employee Creation Page</p>
+                <p style="padding-left:20px"> <input type="button" name="Create" value="Create" onclick="location.href='  @Url.Action("Create")'" /></p>
+            </div>*@
+
+            @*<div class="row" style="display:contents">
+                <h4>View Employee Details</h4>
+                <p class="lead">Click Button to go to Employee List Page</p>
+                <p style="padding-left:20px"> <input type="button" name="Create" value="View" onclick="location.href='  @Url.Action("view")'" /></p>
+            </div>*@
+            <div class="row" style="display:contents">
+
+                <h4>Update the Leaves</h4>
+                <p class="lead">Click Button to Update Leaves of All the Employees</p>
+                <p style="padding-left:20px"> <input type="button" name="Update Leaves" value="Update Leave" onclick="location.href='  @Url.Action("Update")'" /></p>
+
+            </div>
+            <div class="row" style="display:contents">
+
+                <h4>Apply For Leave</h4>
+                <p class="lead">Click Button to go to Leave Apply Page</p>
+                <p style="padding-left:20px"> <input type="button" name="Apply for Leave" value="Apply For Leave" onclick="location.href='  @Url.Action("LeaveApply")'" /></p>
+
+            </div>
+
+
+            <div id="login-div">
+                <h2>VC Holiday and Leaves</h2>
+                <p style="margin-top:15px; margin-bottom:0px"><iframe src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FKolkata&amp;src=dmFsdWVjcmVlZC5jb21fNXZpaWZndm40c3RwdGdpbW9kY2xiNHRydGNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=ZW4uaW5kaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%23EF6C00&amp;color=%230B8043" style="border:solid 1px #777" width="400" height="400" frameborder="0" scrolling="no"></iframe></p>
+                <p></p>
+            </div>
+        </div>
+        <div id="position">
+            <div>
+                <h4> Your Leave Status </h4>
+                <p style="text-align:center"> <input type="button" name="View" value="View" onclick="location.href='@Url.Action("myleave")'" /></p>
+            </div>
+        </div>
+      
+        <div id="position2">
+            <div>
+                <h4> Your Leave Balance </h4>
+                <p id="leave">@ViewBag.leave </p>
+            </div>
+
+
+        </div>
+        <div id="logoff">
+            <input type="button" name="Create" value="LogOut" class="btn-danger" onclick="location.href='@Url.Action("Logoff","Login")'" />
+        </div>
+    </body>
+</html>

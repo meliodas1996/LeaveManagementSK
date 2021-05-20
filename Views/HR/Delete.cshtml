@@ -1,0 +1,88 @@
+﻿@model LeaveManagementSystemValueCreed.Models.approver
+
+@{
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete Approver</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4 style="text-align:center">Approver</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Emplyoee_id)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Emplyoee_id)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Employee_name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.approver_id)
+               
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.approver_id)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Approver_name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Approver_name)
+            </dd>
+
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.department)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.department)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-success" /> |
+                @Html.ActionLink("Back to List", "approvers")
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+﻿@model IEnumerable<LeaveManagementSystemValueCreed.Models.Leave>
+@{
+    Layout = "";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Employee Leaves Details</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: antiquewhite;
+        }
+
+        tr:nth-child(even) {
+            background-color: azure;
+        }
+
+        .header {
+            background-color: aliceblue;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #back-div {
+            position: absolute;
+            top: 3%;
+            left: 3%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+            background-color: azure
+        }
+
+        #logoff {
+            position: absolute;
+            right: 5%;
+            top: 3%;
+            border: 1px solid #ccc;
+            padding: 5px 5px;
+            background-color: azure
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
+<body>
+    <div class="header"> <h2>Leave Details</h2></div>
+
+
+    <table class="table-bordered">
+        <tr>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveType)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Leave_apply_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reason)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Start_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.End_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Number_of_Days)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeaveType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Leave_apply_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reason)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Start_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.End_Date)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.Number_of_Days)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("See Status", "approvals", new { id = item.ID })
+
+                </td>
+                <td>@ViewBag.Message</td>
+
+            </tr>
+
+        }
+
+    </table>
+    <div id="back-div">
+        <a href="@Url.Action("Index","Approver")">Back To Home</a>
+    </div>
+    <div id="logoff">
+        <a href="@Url.Action("Logoff","Login")">LogOut</a>
+    </div>
+</body>
+</html>
+
+

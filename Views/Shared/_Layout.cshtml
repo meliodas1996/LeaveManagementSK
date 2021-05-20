@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -Leave Managmenet System</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/JavaScript.js"></script>
+    @*<script type="text/javascript">
+            $(document).ready(
+                function () {
+                    $('.datepicker').datepicker({
+
+                        changeMonth: true,
+                        changeYear: true,
+                        minDate: "-99Y",
+                        dateFormat: "dd/mm/yy"
+
+                    })
+                });
+        </script>*@
+</head>
+<body>
+    <header>
+        <div class="jumbotron" style="border-radius: 27.3rem; margin-bottom: 1rem;">
+
+
+            <div style="text-align:center ">
+                <img src="~/image/logo.PNG" />
+
+            </div>
+
+        </div>
+    </header>
+    <ul id="sub-header">
+        <li><a href="#home">Home</a></li>
+        <li><a href="@Url.Action("ApplyLeave")">Apply Leave</a></li>
+        <li><a href="@Url.Action("Leave","Employee")">Leave Details</a></li>
+        <li><a href="@Url.Action("approverslist","Employee")">Approvers</a></li>
+        <li><a href="@Url.Action("holiday","Employee")">Holiday Calendar</a></li>
+    </ul>
+
+    @RenderBody()
+
+    @*<hr class="hrCustom"/>*@
+    </div>
+</body>
+</html>
